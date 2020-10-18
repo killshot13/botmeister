@@ -39,11 +39,15 @@ along with Botmeister. If not, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 if(!class_exists('Botmeister'))
 {
-	class Botmeister
-	{
-		/**
-		 * Construct the plugin object
-		 */
+	/**
+     * class:   Botmeister
+     * desc:    plugin class to allow reports be pulled from multipe GA accounts
+     */
+    class Botmeister
+    {
+        /**
+         * Created an instance of the Botmeister class
+         */
 		public function __construct()
 		{
 			// Initialize Settings
@@ -56,6 +60,23 @@ if(!class_exists('Botmeister'))
 
 			$plugin = plugin_basename(__FILE__);
 			add_filter("plugin_action_links_$plugin", array( $this, 'plugin_settings_link' ));
+
+			// Set up ACF
+            add_filter('acf/settings/path', function() {
+                return sprintf("%s/includes/advanced-custom-fields-pro/", dirname(__FILE__));
+            });
+            add_filter('acf/settings/dir', function() {
+                return sprintf("%s/includes/advanced-custom-fields-pro/", plugin_dir_url(__FILE__));
+            });
+            require_once(sprintf("%s/includes/advanced-custom-fields-pro/acf.php", dirname(__FILE__)));
+
+            // Settings managed via ACF
+            require_once(sprintf("%s/includes/settings.php", dirname(__FILE__)));
+            $settings = new Botmeister_Settings(plugin_basename(__FILE__));
+
+            // CPT for example post type
+            require_once(sprintf("%s/includes/example-post-type.php", dirname(__FILE__)));
+            $exampleposttype = new Botmeister_ExamplePostType();
 		} // END public function __construct
 
 		/**
@@ -94,5 +115,4 @@ if(class_exists('Botmeister'))
 
 	// instantiate the plugin class
 	$botmeister = new Botmeister();
-
-}
+}	// END if(class_exists('Botmeister'))
