@@ -1,14 +1,14 @@
 {
-    "name": "killshot13/botmeister",
-    "description": "Uses an algorithm based on the TypingDNA API to destroy blog comment spam with amazing precision and accuracy.",
-    "type": "project",
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "killshot13",
-            "email": "dmreh@outlook.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+  "name": "killshot13/botmeister",
+  "description": "Uses an algorithm based on the TypingDNA API to destroy blog comment spam with amazing precision and accuracy.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "killshot13",
+      "email": "dmreh@outlook.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {}
 }
