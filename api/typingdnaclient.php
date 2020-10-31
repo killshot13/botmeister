@@ -34,8 +34,8 @@
      * The apiKey is used to give access, track, count and
      * log each transaction, it can't be reset
      *******************************************************/
-      private static $apiKey = '*************';
-      private static $apiSecret = '*************';
+      private static $apiKey = '{$_ENV["SPVAR1"]}';
+      private static $apiSecret = '{$_ENV["SPVAR2"]}';
       private static $typingdnaurl = 'https://api.typingdna.com';
       //private static $typingdnaurl = 'https://tdna-api.azurewebsites.net';
     /*******************************************************

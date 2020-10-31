@@ -19,3 +19,4 @@ test/
 **/*.min.js
 **/node_modules/**
 **/vendor/**
+.env
