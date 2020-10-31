@@ -1,8 +1,8 @@
 <?php
-if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
-    require __DIR__ . '/vendor/autoload.php';
-}
 /**
+ * @package Botmeister
+ */
+/*
  * Plugin Name
  *
  * package      Botmeister\PluginSlug
@@ -45,6 +45,21 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
+if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
+    require __DIR__ . '/vendor/autoload.php';
+}
+
+// Make sure we don't expose any info if called directly
+if ( !function_exists( 'add_action' ) ) {
+	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
+	exit;
+}
+
+define( 'BOTMEISTER_VERSION', '1.0.0' );
+define( 'BOTMEISTER__MINIMUM_WP_VERSION', '4.0' );
+define( 'BOTMEISTER__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'BOTMEISTER_DELETE_LIMIT', 100000 );
+
 
 if(!class_exists('Botmeister'))
 {
@@ -59,6 +74,8 @@ if(!class_exists('Botmeister'))
          */
 		public function __construct()
 		{
+			add_action('admin_init', array(&$this, 'admin_init'));
+			add_action('admin_menu', array(&$this, 'add_menu'));
 			// Initialize Settings
 			require_once(sprintf("%s/settings.php", dirname(__FILE__)));
 			$Botmeister_Settings = new Botmeister_Settings();
@@ -66,6 +83,8 @@ if(!class_exists('Botmeister'))
 			// Register custom post types
 			require_once(sprintf("%s/post-types/post_type_template.php", dirname(__FILE__)));
 			$Post_Type_Template = new Post_Type_Template();
+
+
 
 			$plugin = plugin_basename(__FILE__);
 			add_filter("plugin_action_links_$plugin", array( $this, 'plugin_settings_link' ));
@@ -103,16 +122,6 @@ if(!class_exists('Botmeister'))
 		{
 			// Do nothing
 		} // END public static function deactivate
-
-		// Add the settings link to the plugins page
-		function plugin_settings_link($links)
-		{
-			$settings_link = '<a href="options-general.php?page=botmeister">Settings</a>';
-			array_unshift($links, $settings_link);
-			return $links;
-		}
-
-
 	} // END class Botmeister
 } // END if(!class_exists('Botmeister'))
 
@@ -123,5 +132,5 @@ if(class_exists('Botmeister'))
 	register_deactivation_hook(__FILE__, array('Botmeister', 'deactivate'));
 
 	// instantiate the plugin class
-	$botmeister = new Botmeister();
+	$wp_plugin_template = new Botmeister();
 }	// END if(class_exists('Botmeister'))

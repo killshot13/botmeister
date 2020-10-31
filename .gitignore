@@ -13,3 +13,9 @@ wp-content/backups/
 sitemap.xml
 sitemap.xml.gz
 vendor
+.DS_Store
+.idea
+test/
+**/*.min.js
+**/node_modules/**
+**/vendor/**

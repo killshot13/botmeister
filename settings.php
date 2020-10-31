@@ -1,7 +1,7 @@
 <?php
-if(!class_exists('Botmeister_Settings'))
+if(!class_exists('Botmeister_Admin'))
 {
-	class Botmeister_Settings
+	class Botmeister_Admin
 	{
 		/**
 		 * Construct the plugin object
@@ -25,7 +25,7 @@ if(!class_exists('Botmeister_Settings'))
         	// add your settings section
         	add_settings_section(
         	    'botmeister-section',
-        	    'WP Plugin Template Settings',
+        	    'Botmeister Settings',
         	    array(&$this, 'settings_section_botmeister'),
         	    'botmeister'
         	);
@@ -57,7 +57,7 @@ if(!class_exists('Botmeister_Settings'))
         public function settings_section_botmeister()
         {
             // Think of this as help text for the section.
-            echo 'These settings do things for the WP Plugin Template.';
+            echo 'These settings do things for Botmeister.';
         }
 
         /**
@@ -80,8 +80,8 @@ if(!class_exists('Botmeister_Settings'))
         {
             // Add a page to manage this plugin's settings
         	add_options_page(
-        	    'WP Plugin Template Settings',
-        	    'WP Plugin Template',
+        	    'Botmeister Settings',
+        	    'Botmeister',
         	    'manage_options',
         	    'botmeister',
         	    array(&$this, 'plugin_settings_page')

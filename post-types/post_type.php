@@ -1,12 +1,12 @@
 <?php
-if(!class_exists('Post_Type_Template'))
+if(!class_exists('Post_Type_Botmeister'))
 {
 	/**
 	 * A PostTypeTemplate class that provides 3 additional meta fields
 	 */
-	class Post_Type_Template
+	class Post_Type_Botmeister
 	{
-		const POST_TYPE	= "post-type-template";
+		const POST_TYPE	= "post-type-botmeister";
 		private $_meta	= array(
 			'meta_a',
 			'meta_b',
