@@ -11,7 +11,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "composer/installers": "^1.9"
+    "composer/installers": "^2.0"
   },
   "require-dev": {
     "xwp/wp-dev-lib": "^1.6",
